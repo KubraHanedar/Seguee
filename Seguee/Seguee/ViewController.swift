@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var userName = ""
     
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var nameText: UITextField!
@@ -22,11 +23,18 @@ class ViewController: UIViewController {
     
     
     @IBAction func nextClicked(_ sender: Any) {
-        
+        userName = nameText.text!
         performSegue(withIdentifier: "toSecondVC", sender: nil)
         
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSecondVC" {
+            let destinationVC = segue.destination as! SegueSecondViewController
+            destinationVC.myName = userName
+        }
+    }
+    
+    
 }
 
